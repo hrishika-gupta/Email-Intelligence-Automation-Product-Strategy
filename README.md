@@ -42,12 +42,42 @@ To solve this, I built a **complete automation pipeline** that:
 
 ## 🔄 Workflow
 
-```mermaid
-graph TD;
-  A[.eml Email Files] --> B[Parse Metadata (From, To, Subject, Date)];
-  B --> C[Extract Body Text];
-  C --> D[Find Phone Numbers (Regex + phonenumbers)];
-  C --> E[Identify Locations (spaCy NER)];
-  D --> F[Structured Python Dict];
-  E --> F;
-  F --> G[Export to CSV];
+1. 📂 Load `.eml` Email Files
+     └─ Loop through directory of email files
+
+2. 🧾 Parse Email Metadata
+     └─ Extract Subject, From, To, Date
+
+3. 📝 Extract Body Text
+     └─ Decode plain text from multipart email structure
+
+4. 📞 Detect Phone Numbers
+     └─ Use regex + `phonenumbers` to validate
+
+5. 🌍 Extract Locations
+     └─ Use spaCy NER to find cities, countries (label = GPE)
+
+6. 🧠 Structure into Dicts
+     └─ Combine all extracted data per email
+
+7. 📤 Export to CSV
+     └─ Create `output.csv` with clean fields
+
+
+<img width="966" alt="Screenshot 2025-07-07 at 4 50 45 PM" src="https://github.com/user-attachments/assets/b6d5bf29-f3be-4b75-84b3-f735e5cd9598" />
+
+
+📈 Impact
+✅ Reduced email review time from days to minutes
+✅ Helped Afforest’s product team prioritize features based on actual customer interest
+✅ Enabled Sales to qualify leads by geography and contactability
+✅ Created a reusable framework for future contact parsing
+
+🧠 Learnings
+How to use Python for real-world automation tasks
+Applied NLP for named entity extraction
+Cleaned noisy, unstructured text data
+Built production-style scripts from scratch for business teams
+
+
+
